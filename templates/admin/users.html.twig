@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <nav class="navbar navbar-dark bg-info">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.backgroundsy.com/file/large/web-app-user.jpg" width="55" height="50" class="d-inline-block align-top" alt="">
+                    Administrateur
+            </a>
+            
+                    <a href="{{ path('app_logout') }}" class="btn btn-light" >Deconnection</a>
+            
+        </nav>
+    </div>
+    <div {#class="wrapper"#} class="col-2">
+
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="sidebar sidebar-light " style="background-color: #e3f2fd;">
+                <div class="sidebar-header">
+                <h4>MENU</h4>
+                </div>
+                </br>
+                </br>
+                    <a href="{{ path('admin_users') }}" class="btn btn-info">Gestion des utilisateurs</a>
+                </br>
+                </br>
+                    <a href="{{ path('app_register') }}" class="btn btn-info">Ajouter un utilisateur</a>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                    <a href="{{ path('admin_index') }}" class="btn btn-info">Home</a>
+                
+               
+            </nav>
+    </div>
+
+
+    <div class="col-10">
+        <table class="table" >
+            <thead>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                {#On fait une boucle sur les utilisateurs#}
+                {% for user in user %}
+                    <tr>
+                        <td> {{ user.id }} </td>
+                        <td> {{ user.username }} </td>
+                        <td>
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_USER" %}
+                                    Utilisateur
+                                {% elseif role == "ROLE_MANAGER" %}
+                                    Manager
+                                {% elseif role == "ROLE_COLLABORATEUR" %}
+                                    Collaborateur
+                                {% elseif role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_modifier_users', {'id':user.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('admin_supprimer_users', {'id':user.id}) }}" class="btn btn-danger">Supprimer</a>
+                            {#<a href="#" class="btn primary press modal-triggal"  data-target="modal-delete" data-id= "{{user.id}}" data-titre="{{user.username}}">
+                                Supprimer
+                            </a>#}
+                            {#<button class="btn rounded-1 primary btn-press modal-trigger" data-target="modal-delete" data-id= "{{user.id}}">Supprimer</button>#}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan=5> Il n'ya pas d'utilisateur inscrit</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+

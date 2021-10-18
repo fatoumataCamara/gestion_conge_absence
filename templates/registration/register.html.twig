@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-dark bg-info">
+                <a class="navbar-brand" href="#">
+                    <img src="https://www.backgroundsy.com/file/large/web-app-user.jpg" width="55" height="50" class="d-inline-block align-top" alt="">
+                        Administrateur
+                </a>
+                
+                        <a href="{{ path('app_logout') }}" class="btn btn-light" >Deconnection</a>
+                
+            </nav>
+        </div>
+        <div {#class="wrapper"#} class="col-2">
+
+
+                <!-- Sidebar -->
+                <nav id="sidebar" class="sidebar sidebar-light " style="background-color: #e3f2fd;">
+                    <div class="sidebar-header">
+                    <h4>MENU</h4>
+                    </div>
+                    </br>
+                    </br>
+                        <a href="{{ path('admin_users') }}" class="btn btn-info">Gestion des utilisateurs</a>
+                    </br>
+                    </br>
+                        <a href="{{ path('app_register') }}" class="btn btn-info">Ajouter un utilisateur</a>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                        <a href="{{ path('admin_index') }}" class="btn btn-info">Home</a>
+                    
+                
+                </nav>
+        </div>
+        <div class="col-10">
+       
+
+                                {{ form_start(registrationForm) }}
+                                    {{ form_row(registrationForm.username) }}
+                                    {{ form_row(registrationForm.plainPassword, {
+                                        label: 'Password'
+                                    }) }}
+                                    
+
+                                    <button type="submit" class="btn btn-warning">Ajouter</button>
+                                {{ form_end(registrationForm) }}
+
+        </div>                   
+       
+{% endblock %}

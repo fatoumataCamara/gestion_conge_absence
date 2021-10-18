@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de connection!{% endblock %}
+
+
+
+{% block body %}
+
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="https://img2.freepng.fr/20180423/lxw/kisspng-human-resources-computer-icons-organization-manage-human-resources-5ade92e46cdfc7.951646561524536036446.jpg" style="width: 195px;" alt="logo">
+                  <h2 class="mt-1 mb-5 pb-1 text-secondary"> Page de connection </h2>
+                </div>
+
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                     {% endif %}
+
+                   
+                    <div class="form-outline mb-4">
+                        <label for="inputUsername">Username</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="text-center pt-1 mb-5 pb-1">
+                        <button class="btn btn-lg  btn btn-outline-secondary" type="submit">
+                            Connection
+                        </button>
+                        
+                    </div>   
+                </form>
+            </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center bg-secondary gradient-custom-2">
+              <div class=" text-white px-3 py-4 p-md-5 mx-md-4">
+                <h2 class="mb-4" >Bienvenue dans notre application de gestion des congés et des absences</h2>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

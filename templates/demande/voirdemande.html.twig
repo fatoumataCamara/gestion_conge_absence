@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir demandes congés{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-dark bg-info">
+                <a class="navbar-brand" href="#">
+                    <img src="https://www.backgroundsy.com/file/large/web-app-user.jpg" width="55" height="50" class="d-inline-block align-top" alt="">
+                        Manager
+                </a>
+                
+                        <a href="{{ path('app_logout') }}" class="btn btn-light" >Deconnection</a>
+                
+            </nav>
+        </div>
+        <div {#class="wrapper"#} class="col-2">
+
+
+                <!-- Sidebar -->
+                <nav id="sidebar" class="sidebar sidebar-light " style="background-color: #e3f2fd;">
+                    <div class="sidebar-header">
+                    <h4>MENU</h4>
+                    </div>
+                    </br>
+                    </br>
+                        <a href="{{path('manager_ajout_collaborateur')}}" class="btn btn-info">Ajouter un  collaborateur</a>
+                    </br>
+                    </br>
+                        <a href="{{path('manager_collaborateur')}}" class="btn btn-info">Gestion des collaborateurs</a>
+                    </br>
+                    </br>                   
+                        <a href="{{path('demande')}}" class="btn btn-info">Voir Demande des collaborateurs</a>                   
+                    </br>
+                    </br>
+                        <a href="#" class="btn btn-info">Voir solde des collaborateurs</a>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    
+                        <a href="{{ path('manager_index') }}" class="btn btn-info">Home</a>
+                </nav>
+        </div>
+        <div class="col-9">
+            <table class="table" >
+                <thead>
+                    <th>ID</th>
+                    <th>Numéro demande</th>
+                    <th>Date demande</th>
+                    <th>Date de départ</th>
+                    <th>Date de retour</th>
+                    <th>Pièce justificative</th>
+                    <th>Collaborateur</th>
+                    <th>Type de congé</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {#On fait une boucle sur les demandes de congé#}
+                    {% for demandeconge in demandeConge %}
+                        <tr>
+                            <td> {{ demandeconge.id }} </td>
+                            <td> {{ demandeconge.numdemande }} </td>
+                            <td> {{ demandeconge.datedemande }} </td>
+                            <td> {{ demandeconge.datedebut }} </td>
+                            <td> {{ demandeconge.dateretour }} </td>
+                            <td> {{ demandeconge.piecejustificative }} </td>
+                            <td> {{ demandeconge.collaborateur }} </td>
+                            <td> {{ demandeconge.typeconge }} </td>
+                            
+                            <td>
+                                <a href="{{ path('traiter_demandeConge', {'id':demandeconge.id}) }}" class="btn btn-warning">Traiter</a>
+                                <a href="{{ path('supprimer_demandeConge', {'id':demandeconge.id}) }}" class="btn btn-danger">Supprimer</a>
+                                {#<a href="#" class="btn primary press modal-triggal"  data-target="modal-delete" data-id= "{{user.id}}" data-titre="{{user.username}}">
+                                    Supprimer
+                                </a>#}
+                                {#<button class="btn rounded-1 primary btn-press modal-trigger" data-target="modal-delete" data-id= "{{user.id}}">Supprimer</button>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table> 
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des collaboreteurs{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <nav class="navbar navbar-dark bg-info">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.backgroundsy.com/file/large/web-app-user.jpg" width="55" height="50" class="d-inline-block align-top" alt="">
+                    Manager
+            </a>
+            
+                    <a href="{{ path('app_logout') }}" class="btn btn-light" >Deconnection</a>
+            
+        </nav>
+    </div>
+    <div {#class="wrapper"#} class="col-2">
+
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="sidebar sidebar-light " style="background-color: #e3f2fd;">
+                    <div class="sidebar-header">
+                    <h4>MENU</h4>
+                    </div>
+                    </br>
+                    </br>
+                        <a href="{{path('manager_ajout_collaborateur')}}" class="btn btn-info">Ajouter un  collaborateur</a>
+                    </br>
+                    </br>
+                        <a href="{{path('manager_collaborateur')}}" class="btn btn-info">Gestion des collaborateurs</a>
+                    </br>
+                    </br>                   
+                        <a href="{{path('demande')}}" class="btn btn-info">Voir Demande des collaborateurs</a>                   
+                    </br>
+                    </br>
+                        <a href="#" class="btn btn-info">Voir solde de congé des collaborateurs</a>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                        <a href="{{ path('manager_index') }}" class="btn btn-info">Home</a>
+                </nav>
+    </div>
+
+
+    <div class="col-10">
+        <table class="table" >
+            <thead>
+                <th>ID</th>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Sexe</th>
+                {#<th>datedenaissance</th>
+                <th>lieudenaissance</th>#}
+                <th>nationalite</th>
+                <th>Religion</th>
+                {#<th>num_cni</th>
+                <th>num_tel</th>#}
+                <th>email</th>
+                <th>adresse</th>
+                <th>fonction</th>
+                <th>categorie</th>
+                {#<th>date_recrut</th>
+                <th>situation_matri</th>
+                <th>nombre_enfant</th>
+                <th>Actions</th>#}
+            </thead>
+            <tbody>
+                {#On fait une boucle sur les collaborateurs#}
+                {% for collaborateur in collaborateur %}
+                    <tr>
+                        <td> {{ collaborateur.id }} </td>
+                        <td> {{ collaborateur.matricule }} </td>
+                        <td> {{ collaborateur.nom }} </td>
+                        <td> {{ collaborateur.prenom }} </td>
+                        <td> {{ collaborateur.sexe }} </td>
+                        {#<td> {{ collaborateur.datedenaissance }} </td>
+                        <td> {{ collaborateur.lieudenaissance }} </td>#}
+                        <td> {{ collaborateur.nationalite }} </td>
+                        <td> {{ collaborateur.religion }} </td>
+                        {#<td> {{ collaborateur.num_cni }} </td>
+                        <td> {{ collaborateur.num_tel }} </td>#}
+                        <td> {{ collaborateur.email }} </td>
+                        <td> {{ collaborateur.adresse }} </td>
+                        <td> {{ collaborateur.fonction }} </td>
+                        <td> {{ collaborateur.categorie }} </td>
+                        {#<td> {{ collaborateur.date_recrut }} </td>
+                        <td> {{ collaborateur.situation_matri }} </td>#}
+                        {#<td> {{ collaborateur.nombre_enfant }} </td>#}
+                        <td>
+                            <a href="{{ path('manager_modifier_collaborateur', {'id':collaborateur.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('manager_supprimer_collaborateur', {'id':collaborateur.id}) }}" class="btn btn-danger">Supprimer</a>
+                            {#<a href="#" class="btn primary press modal-triggal"  data-target="modal-delete" data-id= "{{user.id}}" data-titre="{{user.username}}">
+                                Supprimer
+                            </a>#}
+                            {#<button class="btn rounded-1 primary btn-press modal-trigger" data-target="modal-delete" data-id= "{{user.id}}">Supprimer</button>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+

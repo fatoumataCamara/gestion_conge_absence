@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer demande {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-dark bg-info">
+                <a class="navbar-brand" href="#">
+                    <img src="https://www.backgroundsy.com/file/large/web-app-user.jpg" width="55" height="50" class="d-inline-block align-top" alt="">
+                       Collaborateur
+                </a>
+                
+                        <a href="{{ path('app_logout') }}" class="btn btn-light" >Deconnection</a>
+                
+            </nav>
+        </div>
+        <div {#class="wrapper"#} class="col-2">
+
+
+                <!-- Sidebar -->
+               <nav id="sidebar" class="sidebar sidebar-light " style="background-color: #e3f2fd;">
+                    <div class="sidebar-header">
+                    <h4>MENU</h4>
+                    </div>
+                    </br>
+                    </br>
+                        <a href="{{path('envoyer_demandeConge')}}" class="btn btn-info">Faire une demande de congé</a>
+                    </br>
+                    </br>                   
+                         <a href="{{path('envoyer_demandeAbsence')}}" class="btn btn-info">Faire une demande d'autorisation d'absence</a>                  
+                    
+                    </br>
+                    </br>
+                        <a href="#" class="btn btn-info">Voir mon  solde </a>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    
+                        <a href="{{ path('collaborateur_index') }}" class="btn btn-info">Home</a>
+                </nav>
+        </div>
+        <div class="col-10">
+             {{ form(envoyerDemandeAbsenceForm) }}
+        </div>
+    </div>
+
+{% endblock %}
